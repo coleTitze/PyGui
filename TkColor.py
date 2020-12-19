@@ -4,5 +4,6 @@ constColorDict = {
     "discordDark": "#2f3136",
     "discordText":  "#8e9297",
     "discordHover": "#33363c",
-    "discordClick": "#393c42"
+    "discordClick": "#393c42",
+    "discordPurple": "#48547d"
 }
