@@ -1,12 +1,43 @@
 import tkinter as tk
+from Group import *
 from TkColor import *
 
 
-def cancel(currWindow):
-    currWindow.destroy()
+def checkNewGroup(newGroup, groupContainer):
+    if len(newGroup) == 0:
+        return 1
+    elif groupContainer.contains(newGroup):
+        return 2
+    return 0
 
 
-def addGroup():
+def addGroup(groupContainer):
+    def cancel():
+        grpWindow.destroy()
+
+    def addGroupToContainer():
+        newGroup = Group(groupE.get())
+        errorCode = checkNewGroup(newGroup.getName(), groupContainer)
+        if errorCode == 0:
+            groupContainer.getGroupList().append(newGroup)
+            grpWindow.destroy()
+        elif errorCode == 1:
+            errorL = tk.Label(
+                grpWindow,
+                fg="Red",
+                bg=constColorDict.get("discordDark"),
+                text="Group Name Empty"
+            )
+            errorL.grid(row=3, column=0, sticky="nsew", padx=(15, 15))
+        elif errorCode == 2:
+            errorL = tk.Label(
+                grpWindow,
+                fg="Red",
+                bg=constColorDict.get("discordDark"),
+                text="Group Already Exists"
+            )
+            errorL.grid(row=3, column=0, sticky="ew", padx=(15, 15))
+
     grpWindow = tk.Toplevel()
     grpWindow.configure(bg=constColorDict.get("discordDark"))
     groupL = tk.Label(
@@ -34,7 +65,7 @@ def addGroup():
         fg="white",
         activebackground=constColorDict.get("discordBlack"),
         activeforeground=constColorDict.get("discordPurple"),
-        command=addGroup
+        command=addGroupToContainer
     )
     cancelB = tk.Button(
         grpWindow,

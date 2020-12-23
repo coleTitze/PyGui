@@ -1,5 +1,4 @@
-import tkinter as tk
-from TkColor import *
+from GroupContainer import *
 import tkinter.font as font
 from ButtonAction import *
 
@@ -22,6 +21,7 @@ class HomeGridSetup:
         self.__col1Width = 70
         self.__col2Width = 240
         self.__window.configure(bg=constColorDict.get("discordLight"))
+        self.__groupContainer = GroupContainer()
 
     def getWindow(self):
         return self.__window
@@ -50,7 +50,7 @@ class HomeGridSetup:
             activeforeground="white",
             bg=constColorDict.get("discordBlack"),
             fg=constColorDict.get("discordPurple"),
-            command=addGroup
+            command=lambda: addGroup(self.__groupContainer)
         )
         addRemGroupButton['font'] = bigFontSize
         addRemGroupButton.grid(
