@@ -1,12 +1,6 @@
-import tkinter as tk
-from TkColor import *
-from GridSetup import *
+# from TkColor import *
+from HomeGridSetup import *
 
-mainGrid = GridSetup(tk, tk.Tk())
-
-mainGrid.makeFirstColumn()
-mainGrid.makeSecondColumn()
-mainGrid.makeAddGroupButton()
-mainGrid.makeAddReminderButton()
-
+mainGrid = homeSetup()
+mainGrid.getWindow().title("Remind Me")
 mainGrid.getWindow().mainloop()

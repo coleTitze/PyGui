@@ -1,8 +1,19 @@
+import tkinter as tk
 from TkColor import *
 import tkinter.font as font
+from ButtonAction import *
 
 
-class GridSetup:
+def homeSetup():
+    homeGrid = HomeGridSetup(tk, tk.Tk())
+    homeGrid.makeFirstColumn()
+    homeGrid.makeSecondColumn()
+    homeGrid.makeAddGroupButton()
+    homeGrid.makeAddReminderButton()
+    return homeGrid
+
+
+class HomeGridSetup:
     def __init__(self, newTk, newWindow):
         self.__window = newWindow
         self.__tk = newTk
@@ -38,7 +49,8 @@ class GridSetup:
             activebackground=constColorDict.get("discordPurple"),
             activeforeground="white",
             bg=constColorDict.get("discordBlack"),
-            fg=constColorDict.get("discordPurple")
+            fg=constColorDict.get("discordPurple"),
+            command=addGroup
         )
         addRemGroupButton['font'] = bigFontSize
         addRemGroupButton.grid(
@@ -56,7 +68,8 @@ class GridSetup:
             activeforeground="white",
             bg=constColorDict.get("discordDark"),
             fg=constColorDict.get("discordText"),
-            anchor="w"
+            anchor="w",
+            command=addReminder
         )
         addReminderButton.grid(
             row=1,
